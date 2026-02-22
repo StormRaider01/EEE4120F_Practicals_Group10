@@ -25,6 +25,7 @@ function run_analysis()
 
     for i = 1:num_images
         image_array{i} = imread(sprintf('sample_images/image_%s.png', image_sizes{i})); % Load each image
+        image_array{i} = rgb2gray(image_array{i});
     end
     
     % TODO2:
@@ -45,27 +46,27 @@ function run_analysis()
     % Warm up the functions to ensure fair timing
     for i = 1:5
         for j = 1:num_images
-            my_conv2(image_array{j}, Gx, Gy); % Warm up manual convolution
-            inbuilt_conv2(image_array{j}, Gx, Gy); % Warm up built-in convolution
+            my_conv2(image_array{j}, Gx, Gy,'same'); % Warm up manual convolution
+            inbuilt_conv2(image_array{j}, Gx, Gy, 'same'); % Warm up built-in convolution
         end
     end
 
     % Initialize arrays to store results
     time_manual = zeros(1, num_images);
     time_builtin = zeros(1, num_images);
-    output_manual = zeros(1, num_images);
-    output_builtin = zeros(1, num_images);
+    output_manual = cell(1, num_images);
+    output_builtin = cell(1, num_images);
     speedup = zeros(1, num_images);
 
     for i = 1:num_images
         % Measure time for manual convolution
         tic;
-        output_manual(i) = my_conv2(image_array{i}, Gx, Gy);
+        output_manual{i} = my_conv2(image_array{i}, Gx, Gy,'same');
         time_manual(i) = toc;
 
         % Measure time for built in convolution
         tic;
-        output_builtin(i) = inbuilt_conv2(image_array{i}, Gx, Gy);
+        output_builtin{i} = inbuilt_conv2(image_array{i}, Gx, Gy,'same');
         time_builtin(i) = toc;
 
         % Compute speedup
@@ -90,23 +91,23 @@ end
 function output = my_conv2(image, Gx, Gy, shape) %Add necessary input arguments
     
     %converting to double
-    image = double(image)
-    Gx = double(Gx)
-    Gy = double(Gy)
+    image = double(image);
+    Gx = double(Gx);
+    Gy = double(Gy);
 
     %getting the size of the matrices:
-    [M,N] = size(image)
-    [m,n] = size(Gx)
+    [M,N] = size(image);
+    [m,n] = size(Gx);
 
     %for convolution need to flip the kernels:
     Gx = rot90(Gx, 2); % Flip the Gx kernel
     Gy = rot90(Gy, 2); % Flip the Gy kernel
     
     %initially assuming full convolution:
-    pad_M = m -1
-    pan_N = n - 1
+    pad_M = m -1;
+    pad_N = n - 1;
 
-    padded = padarray(image, [pad_M pad_N], 0 , 'both')
+    padded = padarray(image, [pad_M pad_N], 0 , 'both');
 
     full_Gx = zeros(M+m-1,N+n-1);
     full_Gy = zeros(M+m-1, N+n-1);
@@ -140,7 +141,7 @@ function output = my_conv2(image, Gx, Gy, shape) %Add necessary input arguments
             output = full_output(row_start:row_start+M-1, col_start:col_start+N-1);
             
         case 'valid'
-            output = full_output(m:M,n:N)
+            output = full_output(m:M,n:N);
         otherwise
             error('Invalid shape')
     end
@@ -154,7 +155,7 @@ end
 
 % TODO: Use conv2 to perform 2D convolution
 % output - Convolved image result (grayscale)
-function output = inbuilt_conv2(image, Gx, Gy) %Add necessary input arguments
+function output = inbuilt_conv2(image, Gx, Gy,shape) %Add necessary input arguments
     
     image = double(image);
     Cx = conv2(image, Gx, shape);
