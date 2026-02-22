@@ -51,32 +51,55 @@ function run_analysis()
         end
     end
 
-    % Initialize arrays to store results
-    time_manual = zeros(1, num_images);
-    time_builtin = zeros(1, num_images);
-    output_manual = cell(1, num_images);
-    output_builtin = cell(1, num_images);
-    speedup = zeros(1, num_images);
+    % Initialize result to store results
+    results = struct('image_name', cell(num_images, 1), ...
+                    'output_manual', cell(num_images, 1), 'time_manual', cell(num_images, 1), ...
+                    'output_builtin', cell(num_images, 1), 'time_builtin', cell(num_images, 1), ...
+                    'speedup', cell(num_images, 1), 'is_correct', cell(num_images, 1));
 
     for i = 1:num_images
         % Measure time for manual convolution
         tic;
-        output_manual{i} = my_conv2(image_array{i}, Gx, Gy,'same');
-        time_manual(i) = toc;
+        results.output_manual{i} = my_conv2(image_array{i}, Gx, Gy);
+        results.time_manual{i}   = toc;
 
         % Measure time for built in convolution
         tic;
-        output_builtin{i} = inbuilt_conv2(image_array{i}, Gx, Gy,'same');
-        time_builtin(i) = toc;
+        results.output_builtin{i} = inbuilt_conv2(image_array{i}, Gx, Gy);
+        results.time_builtin{i} = toc;
 
         % Compute speedup
-        speedup(i) = time_manual(i) / time_builtin(i);
+        results.speedup{i} = results.time_manual{i} / results.time_builtin{i};
+
+        % Verify output correctness (using a simple threshold for comparison)
+        tolerance = 1e-5; % Set a tolerance level for comparison
+        diff = abs(results.output_manual{i} - results.output_builtin{i});
+        
+        if diff <= tolerance
+            results.is_correct{i} = true;
+        else
+            results.is_correct{i} = false;
+        end
     end
     
-    results = table(image_sizes', time_manual', time_builtin', speedup', ...
-                    'VariableNames', {'Image_Size', 'Time_Manual', 'Time_Builtin', 'Speedup'});
+    results = table(image_sizes', results.output_manual', results.output_builtin',...
+                     results.time_manual', results.time_builtin', results.speedup', results.is_correct', ...
+                    'VariableNames', {'Image_Size', 'Output_Manual', 'Output_Builtin', 'Time_Manual', ...
+                    'Time_Builtin', 'Speedup', 'Is_Correct'});
   
     disp(results);
+
+    % Plot results
+    % Extract speedup values and image sizes for plotting
+    speedup_values = cell2mat(results.Speedup);
+    figure('Name', 'Speedup Comparison', 'NumberTitle', 'off');
+    plot(1:num_images, speedup_values, 'b-o', 'LineWidth', 2, 'MarkerSize', 8);
+    xlabel('Image Size');
+    ylabel('Speedup Ratio (Manual / Built-in)');
+    title('Speedup Comparison: Manual vs Built-in Convolution');
+    grid on;
+    set(gca, 'XTick', 1:num_images, 'XTickLabel', image_sizes);
+    legend('Speedup');
 end
 
 
