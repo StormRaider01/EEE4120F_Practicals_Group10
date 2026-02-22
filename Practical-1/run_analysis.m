@@ -2,7 +2,7 @@
 % Practical 1: 2D Convolution Analysis
 % =========================================================================
 %
-% GROUP NUMBER:
+% GROUP NUMBER: 10
 %
 % MEMBERS:
 %   - Member 1 Maarij Alam, ALMMOH017
@@ -51,58 +51,56 @@ function run_analysis()
         end
     end
 
-    % Initialize result to store results
-    results = struct('image_name', cell(num_images, 1), ...
-                    'output_manual', cell(num_images, 1), 'time_manual', cell(num_images, 1), ...
-                    'output_builtin', cell(num_images, 1), 'time_builtin', cell(num_images, 1), ...
-                    'speedup', cell(num_images, 1), 'is_correct', cell(num_images, 1));
-
+    % Initialize to store results
+    time_manual  = zeros(1, num_images);
+    time_builtin = zeros(1, num_images);
+    speedup      = zeros(1, num_images);
+    is_correct   = false(1, num_images);
+    output_manual  = cell(1, num_images);
+    output_builtin = cell(1, num_images);
+    
+    num_runs = 3;
+    
     for i = 1:num_images
         % Measure time for manual convolution
         tic;
-        results.output_manual{i} = my_conv2(image_array{i}, Gx, Gy);
-        results.time_manual{i}   = toc;
-
-        % Measure time for built in convolution
-        tic;
-        results.output_builtin{i} = inbuilt_conv2(image_array{i}, Gx, Gy);
-        results.time_builtin{i} = toc;
-
-        % Compute speedup
-        results.speedup{i} = results.time_manual{i} / results.time_builtin{i};
-
-        % Verify output correctness (using a simple threshold for comparison)
-        tolerance = 1e-5; % Set a tolerance level for comparison
-        diff = abs(results.output_manual{i} - results.output_builtin{i});
-        
-        if diff <= tolerance
-            results.is_correct{i} = true;
-        else
-            results.is_correct{i} = false;
+        for r = 1:num_runs
+            output_manual{i} = my_conv2(image_array{i}, Gx, Gy, 'same');
         end
+        time_manual(i) = toc / num_runs;
+    
+        % Measure time for built-in convolution
+        tic;
+        for r = 1:num_runs
+            output_builtin{i} = inbuilt_conv2(image_array{i}, Gx, Gy, 'same');
+        end
+        time_builtin(i) = toc / num_runs;
+    
+        % Compute speedup
+        speedup(i) = time_manual(i) / time_builtin(i);
+    
+        % Verify correctness
+        tolerance = 1e-5;
+        max_diff = max(max(abs(output_manual{i} - output_builtin{i})));
+        is_correct(i) = max_diff <= tolerance;
     end
     
-    results = table(image_sizes', results.output_manual', results.output_builtin',...
-                     results.time_manual', results.time_builtin', results.speedup', results.is_correct', ...
-                    'VariableNames', {'Image_Size', 'Output_Manual', 'Output_Builtin', 'Time_Manual', ...
-                    'Time_Builtin', 'Speedup', 'Is_Correct'});
-  
+    % Build results table (scalars only)
+    results = table(image_sizes', time_manual', time_builtin', speedup', is_correct', ...
+                    'VariableNames', {'Image_Size', 'Time_Manual', 'Time_Builtin', 'Speedup', 'Is_Correct'});
     disp(results);
-
-    % Plot results
-    % Extract speedup values and image sizes for plotting
-    speedup_values = cell2mat(results.Speedup);
+    
+    % Plot speedup
     figure('Name', 'Speedup Comparison', 'NumberTitle', 'off');
-    plot(1:num_images, speedup_values, 'b-o', 'LineWidth', 2, 'MarkerSize', 8);
+    plot(1:num_images, speedup, 'b-o', 'LineWidth', 2, 'MarkerSize', 8);
     xlabel('Image Size');
     ylabel('Speedup Ratio (Manual / Built-in)');
     title('Speedup Comparison: Manual vs Built-in Convolution');
     grid on;
     set(gca, 'XTick', 1:num_images, 'XTickLabel', image_sizes);
     legend('Speedup');
+
 end
-
-
 %% ========================================================================
 %  PART 1: Manual 2D Convolution Implementation
 %  ========================================================================
