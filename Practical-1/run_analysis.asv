@@ -66,14 +66,14 @@ function output = my_conv2(image, Gx, Gy, shape) %Add necessary input arguments
             row_start = floor(m/2)+1;
             col_start = floor(n/2)+1;
             
-            %output using the centred Gx and Gy
+            %output using
             output = full_output(row_start:row_start+M-1, col_start:col_start+N-1);
             
-        case 'valid'
-            output = full_output(m:M,n:N)
-        otherwise
-            error('Invalid shape')
-    end
+           
+    
+
+
+    
 end
 
 %% ========================================================================
@@ -85,13 +85,7 @@ end
 % TODO: Use conv2 to perform 2D convolution
 % output - Convolved image result (grayscale)
 function output = inbuilt_conv2(image, Gx, Gy) %Add necessary input arguments
-    
-    image = double(image);
-    Cx = conv2(image, Gx, shape);
-    Cy = conv2(image, Gy, shape);
-
-    %combined:
-    output = abs(Cx) + abs(Cy);
+    kernel_size = size(Gx) 
 
 end
 
