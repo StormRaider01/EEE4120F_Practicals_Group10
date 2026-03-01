@@ -25,7 +25,7 @@ function run_analysis()
         [3840,2160], %4K UHD
         [5120,2880], %5K
         [7680,4320]  %8K UHD
-    ]
+    ];
 
     max_iterations = 1000; 
 
@@ -47,6 +47,7 @@ function run_analysis()
 
         %   b. Measure execution time of mandelbrot_parallel
         tic;
+        
         parallel_output = mandelbrot_parallel(width, height, max_iterations);
         results(counter, 3) = toc;
         
@@ -79,9 +80,12 @@ function iteration_counts = mandelbrot_serial(width, height, max_iterations) %Ad
     
     for xp = 1:width
         for py = 1:height
-            x0 = x; y0 = y;
-            x = 0; y = 0; iteration = 0;
-
+            x0 = (xp/width)*2.5 - 2.0;
+            y0 = (py/height) * 2.4 -1.2;
+            x = 0; y = 0; 
+            
+            iteration = 0; %making this a temp variable to speed up more
+    
             while (iteration < max_iterations) && (x^2 + y^2 <= 4)
                 x_next = x^2 - y^2 + x0;
                 y_next = 2*x*y + y0;
@@ -89,7 +93,7 @@ function iteration_counts = mandelbrot_serial(width, height, max_iterations) %Ad
                 y = y_next;
                 iteration = iteration + 1;
             end
-
+    
             iteration_counts(py, xp) = iteration;
         end
     end
@@ -101,6 +105,37 @@ end
 %  ========================================================================
 %
 %TODO: Implement parallel Mandelbrot set computation function
-function iteration_counts =mandelbrot_parallel(width, height, max_iterations) %Add necessary input arguments 
+function iteration_counts =mandelbrot_parallel(width, height, max_iterations, num_workers) %Add necessary input arguments
+
         
+        %code to initialise the parallelism with the workers
+        if(isempty(gcp('nocreate')))
+           c = parcluster;
+           p = c.parpool(num_workers); %change num_workers param to get more workers
+        end
+
+        iteration_counts = zeros(height, width); 
+
+        parfor xp = 1:width
+            %to fix sliced variable conflict:
+            column = zeros(height, 1);
+            for py = 1:height
+                x0 = (xp/width)*2.5 - 2.0;
+                y0 = (py/height) * 2.4 -1.2;
+                x = 0; y = 0; 
+                iteration = 0; %making this a temp variable to speed up more
+    
+                while (iteration < max_iterations) && (x^2 + y^2 <= 4)
+                    x_next = x^2 - y^2 + x0;
+                    y_next = 2*x*y + y0;
+                    x = x_next;
+                    y = y_next;
+                    iteration = iteration + 1;
+                end
+                column(py) = iteration;
+                
+            end
+            iteration_counts(:, xp) = column;
+        end
+
 end
