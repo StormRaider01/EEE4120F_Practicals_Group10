@@ -8,207 +8,295 @@
 %   - Member 1 Maarij Alam, ALMMOH017
 %   - Member 2 Saeed Solomon, SLMMOG032
 
-%% ========================================================================
-%  PART 4: Testing and Analysis
-%  ========================================================================
-% Compare the performance of serial Mandelbrot set computation
-% with parallel Mandelbrot set computation.
-
 function run_analysis()
+    % all the image resolutions we need to test
     image_sizes = [
-        [800,600],   %SVGA
-        [1280,720],  %HD
-        [1920,1080], %Full HD
-        [2048,1080], %2K Cinema
-        [2560,1440], %2K QHD
-        [3840,2160], %4K UHD
-        [5120,2880], %5K
-        [7680,4320]  %8K UHD
+        800,  600;    % SVGA
+        1280,  720;   % HD
+        1920, 1080;   % Full HD
+        2048, 1080;   % 2K Cinema
+        2560, 1440;   % 2K QHD
+        3840, 2160;   % 4K UHD
+        5120, 2880;   % 5K
+        7680, 4320    % 8K UHD
     ];
 
     resolution_names = {'SVGA','HD','Full HD','2K Cinema','2K QHD','4K UHD','5K','8K UHD'};
     max_iterations = 1000;
-    num_workers = 6;
+    num_trials     = 5;   % run each test 5 times and average to reduce noise
 
-    % FIX 1: Correct pool before timing starts (not inside the loop)
-    p = gcp('nocreate');
-    if ~isempty(p) && p.NumWorkers ~= num_workers
-        delete(p);  % kill wrong-sized pool from previous run
+    % figure out how many physical cores this machine actually has
+    cluster     = parcluster('local');
+    max_workers = cluster.NumWorkers;
+    fprintf('Detected %d maximum workers.\n', max_workers);
+
+    % test even worker counts from 2 up to max e.g. [2 4 6 8 10]
+    worker_counts = 2:2:max_workers;
+    num_res       = length(image_sizes);
+    num_wc        = length(worker_counts);
+
+    % warm up the JIT compiler for serial before timing starts
+    % without this the first timed run includes compile time which skews results
+    fprintf('Warming up serial JIT...\n');
+    mandelbrot_serial(64, 64, 100);
+
+    % measure serial times once and reuse them for all worker count comparisons
+    % no point re-running serial 5 times per worker count
+    fprintf('\n--- Measuring serial baselines ---\n');
+    serial_times = zeros(num_res, 1);
+    for r = 1:num_res
+        W = image_sizes(r,1);  H = image_sizes(r,2);
+        t = zeros(1, num_trials);
+        for k = 1:num_trials
+            tic; mandelbrot_serial(W, H, max_iterations); t(k) = toc;
+        end
+        % drop the first trial since JIT may still be warming up
+        serial_times(r) = mean(t(2:end));
+        fprintf('  %-10s %.4fs\n', resolution_names{r}, serial_times(r));
     end
-    if isempty(gcp('nocreate'))
-        parpool('local', num_workers);  % start correct pool before tic/toc
-    end
 
-    results = zeros(length(image_sizes), 4);
+    % preallocate storage for results
+    all_parallel = zeros(num_res, num_wc);
+    all_speedup  = zeros(num_res, num_wc);
 
-    for counter = 1:length(image_sizes)
-        width  = image_sizes(counter, 1);
-        height = image_sizes(counter, 2);
+    % cache the validation results so we only compute them once
+    % (output doesnt change between worker counts, same math either way)
+    valid_cache = cell(num_res, 1);
 
-        fprintf('\nRunning %s (%d x %d)...\n', resolution_names{counter}, width, height);
+    % main loop - test each worker count
+    for wi = 1:num_wc
+        nw = worker_counts(wi);
+        fprintf('\n=== %d workers ===\n', nw);
 
-        % FIX 2: Average over 3 trials to smooth out background noise
-        serial_times   = zeros(1,3);
-        parallel_times = zeros(1,3);
+        % restart the pool at the right size for this iteration
+        p = gcp('nocreate');
+        if ~isempty(p); delete(p); end
+        parpool('local', nw);
 
-        for trial = 1:3
-            tic;
-            serial_output = mandelbrot_serial(width, height, max_iterations);
-            serial_times(trial) = toc;
+        % warm up the parallel JIT for this pool size as well
+        mandelbrot_parallel(64, 64, 100);
+
+        % time parallel for each resolution
+        for r = 1:num_res
+            W = image_sizes(r,1);  H = image_sizes(r,2);
+            t = zeros(1, num_trials);
+
+            for k = 1:num_trials
+                tic; mandelbrot_parallel(W, H, max_iterations); t(k) = toc;
+            end
+
+            % drop first trial same as serial
+            all_parallel(r, wi) = mean(t(2:end));
+            all_speedup(r,  wi) = serial_times(r) / all_parallel(r, wi);
+
+            % only validate on the first worker count pass since the
+            % outputs are deterministic - no point checking 5 times
+            if wi == 1
+                s_img = mandelbrot_serial  (W, H, max_iterations);
+                p_img = mandelbrot_parallel(W, H, max_iterations);
+                if nnz(s_img - p_img) == 0
+                    valid_cache{r} = 'PASS';
+                else
+                    valid_cache{r} = 'FAIL';
+                end
+            end
         end
 
-        for trial = 1:3
-            tic;
-            parallel_output = mandelbrot_parallel(width, height, max_iterations);
-            parallel_times(trial) = toc;
+        % print results table for this worker count
+        % includes validation column to confirm serial and parallel match
+        fprintf('\n%-12s %-12s %-12s %-12s %-12s %-6s\n', ...
+            'Resolution','Serial(s)','Parallel(s)','Speedup','Efficiency','Valid');
+        fprintf('%s\n', repmat('-',1,74));
+        for r = 1:num_res
+            eff = (all_speedup(r,wi) / nw) * 100;
+            fprintf('%-12s %-12.4f %-12.4f %-12.4f %-12.2f %-6s\n', ...
+                resolution_names{r}, serial_times(r), ...
+                all_parallel(r,wi), all_speedup(r,wi), eff, valid_cache{r});
         end
+        fprintf('%s\n', repmat('-',1,74));
 
-        results(counter, 2) = mean(serial_times);
-        results(counter, 3) = mean(parallel_times);
-        results(counter, 4) = results(counter, 2) / results(counter, 3);
-
-        mandelbrot_plot(serial_output, parallel_output, width, height);
+        % only save the mandelbrot images on the last worker count pass
+        % the images are identical regardless of worker count so no need
+        % to save them multiple times
+        if nw == max_workers
+            fprintf('\nSaving Mandelbrot plots...\n');
+            for r = 1:num_res
+                W = image_sizes(r,1);  H = image_sizes(r,2);
+                s_img = mandelbrot_serial  (W, H, max_iterations);
+                p_img = mandelbrot_parallel(W, H, max_iterations);
+                mandelbrot_plot(s_img, p_img, W, H, resolution_names{r});
+            end
+        end
     end
 
-    % Results table
-    fprintf('\n============================================================\n');
-    fprintf('  BENCHMARK RESULTS (%d workers)\n', num_workers);
-    fprintf('============================================================\n');
-    fprintf('%-12s %-12s %-12s %-12s %-10s\n', 'Resolution', 'Serial(s)', 'Parallel(s)', 'Speedup', 'Efficiency');
-    fprintf('------------------------------------------------------------\n');
-    for i = 1:length(image_sizes)
-        efficiency = (results(i,4) / num_workers) * 100;
-        fprintf('%-12s %-12.4f %-12.4f %-12.4f %.2f%%\n', ...
-            resolution_names{i}, results(i,2), results(i,3), results(i,4), efficiency);
-    end
-    fprintf('============================================================\n');
-
-    % Speedup graph
-    figure;
+    % ── Plot 1: Speedup vs Image Size ───────────────────────────────────
+    % shows how speedup changes as image gets bigger for each worker count
     megapixels = (image_sizes(:,1) .* image_sizes(:,2)) / 1e6;
-    plot(megapixels, results(:,4), '-o', 'LineWidth', 2);
+    figure('Visible','off');
     hold on;
-    yline(num_workers, '--r', sprintf('Ideal (%d workers)', num_workers));
+    colors = lines(num_wc);
+    for wi = 1:num_wc
+        plot(megapixels, all_speedup(:,wi), '-o', ...
+            'LineWidth', 2, 'Color', colors(wi,:), ...
+            'DisplayName', sprintf('%d workers', worker_counts(wi)));
+    end
     xlabel('Image Size (Megapixels)');
     ylabel('Speedup');
-    title(sprintf('Speedup vs Image Size (%d workers)', num_workers));
+    title('Speedup vs Image Size');
+    legend('Location','northwest');
     grid on;
-    saveas(gcf, sprintf('speedup_%dworkers.png', num_workers));
+    saveas(gcf, 'speedup_vs_size.png');
     close;
-    fprintf('Speedup graph saved.\n');
 
-    
+    % ── Plot 2: Speedup vs Worker Count ─────────────────────────────────
+    % shows how adding more workers helps (or doesnt) per resolution
+    % ideal line shows what perfect linear scaling would look like
+    figure('Visible','off');
+    hold on;
+    colors = lines(num_res);
+    for r = 1:num_res
+        plot(worker_counts, all_speedup(r,:), '-o', ...
+            'LineWidth', 2, 'Color', colors(r,:), ...
+            'DisplayName', resolution_names{r});
+    end
+    plot(worker_counts, worker_counts, '--k', 'LineWidth', 1.5, ...
+        'DisplayName', 'Ideal Linear');
+    xlabel('Number of Workers');
+    ylabel('Speedup');
+    title('Speedup vs Worker Count');
+    legend('Location','northwest');
+    grid on;
+    saveas(gcf, 'speedup_vs_workers.png');
+    close;
+
+    % ── Plot 3: Parallel Efficiency vs Worker Count ──────────────────────
+    % efficiency = speedup / num_workers * 100
+    % 100% would mean perfect scaling, in practice its always lower
+    figure('Visible','off');
+    hold on;
+    colors = lines(num_res);
+    for r = 1:num_res
+        efficiency = (all_speedup(r,:) ./ worker_counts) * 100;
+        plot(worker_counts, efficiency, '-o', ...
+            'LineWidth', 2, 'Color', colors(r,:), ...
+            'DisplayName', resolution_names{r});
+    end
+    yline(100, '--k', 'Ideal (100%)', 'LineWidth', 1.5);
+    xlabel('Number of Workers');
+    ylabel('Efficiency (%)');
+    title('Parallel Efficiency vs Worker Count');
+    legend('Location','northeast');
+    grid on;
+    saveas(gcf, 'efficiency_vs_workers.png');
+    close;
+
+    fprintf('\nAll graphs saved.\n');
 end
+
 
 %% ========================================================================
 %  PART 1: Mandelbrot Set Image Plotting and Saving
 %  ========================================================================
-%
-% TODO: Implement Mandelbrot set plotting and saving function
-function mandelbrot_plot(serial_output, parallel_output, width, height) %Add necessary input arguments
-    %% ========================================================================
-%  PART 1: Mandelbrot Set Image Plotting and Saving
-%  ========================================================================
-    % --- Plot Serial Output ---
-    figure('Visible', 'off');           % don't pop up a window
-    imagesc(serial_output);             % display iteration count as colour
-    colormap(hot);                      % use 'hot' colourmap (looks good for Mandelbrot)
-    colorbar;                           % show colour scale
-    axis image off;                     % square pixels, no axes
-    title(sprintf('Serial Mandelbrot %d x %d', width, height));
-    
-    % Save the figure
-    filename_serial = sprintf('mandelbrot_serial_%dx%d.png', width, height);
-    saveas(gcf, filename_serial);
+function mandelbrot_plot(serial_output, parallel_output, width, height, res_name)
+
+    % plot the serial output
+    figure('Visible','off');
+    imagesc(serial_output);
+    colormap(hot);
+    colorbar;
+    axis image off;
+    title(sprintf('Serial Mandelbrot — %s (%dx%d)', res_name, width, height));
+    fname = sprintf('mandelbrot_serial_%dx%d.png', width, height);
+    saveas(gcf, fname);
     close;
 
-    % --- Plot Parallel Output ---
-    figure('Visible', 'off');
+    % plot the parallel output
+    figure('Visible','off');
     imagesc(parallel_output);
     colormap(hot);
     colorbar;
     axis image off;
-    title(sprintf('Parallel Mandelbrot %d x %d', width, height));
-
-    filename_parallel = sprintf('mandelbrot_parallel_%dx%d.png', width, height);
-    saveas(gcf, filename_parallel);
+    title(sprintf('Parallel Mandelbrot — %s (%dx%d)', res_name, width, height));
+    fname = sprintf('mandelbrot_parallel_%dx%d.png', width, height);
+    saveas(gcf, fname);
     close;
 
-    fprintf('Saved: %s and %s\n', filename_serial, filename_parallel);
+    fprintf('  Saved plots for %s\n', res_name);
 end
+
+
+
 
 
 %% ========================================================================
 %  PART 2: Serial Mandelbrot Set Computation
-%  ========================================================================`
-%
-%TODO: Implement serial Mandelbrot set computation function
-function iteration_counts = mandelbrot_serial(width, height, max_iterations) %Add necessary input arguments 
-    
+%  ========================================================================
+function iteration_counts = mandelbrot_serial(width, height, max_iterations)
     iteration_counts = zeros(height, width);
-    
-    for xp = 1:width
-        for py = 1:height
-            x0 = (xp/width)*2.5 - 2.0;
-            y0 = (py/height) * 2.4 -1.2;
-            x = 0; y = 0; 
-            
-            iteration = 0; %making this a temp variable to speed up more
-    
-            while (iteration < max_iterations) && (x^2 + y^2 <= 4)
-                x_next = x^2 - y^2 + x0;
-                y_next = 2*x*y + y0;
-                x = x_next;
-                y = y_next;
+
+    for py = 1:height                           % outer loop over rows
+        y0 = (py / height) * 2.4 - 1.2;        % compute y0 once per row
+        for xp = 1:width
+            x0 = (xp / width) * 2.5 - 2.0;
+            x = 0.0;  y = 0.0;
+            iteration = 0;
+
+            while iteration < max_iterations
+                x2 = x * x;                     % FIX: cache squares —
+                y2 = y * y;                      % avoids recomputing x^2+y^2
+                if x2 + y2 > 4.0
+                    break;
+                end
+                y = 2.0 * x * y + y0;           % update y before x (uses old x)
+                x = x2 - y2 + x0;
                 iteration = iteration + 1;
             end
-    
+
             iteration_counts(py, xp) = iteration;
         end
     end
-
 end
+
 
 %% ========================================================================
 %  PART 3: Parallel Mandelbrot Set Computation
 %  ========================================================================
-%
-%TODO: Implement parallel Mandelbrot set computation function
-function iteration_counts =mandelbrot_parallel(width, height, max_iterations) %Add necessary input arguments
-
-        
-        %code to initialise the parallelism with the workers
-        % p = gcp('nocreate');
-        % if ~isempty(p) && p.NumWorkers ~= num_workers
-        %     delete(p);  % shut down wrong-sized pool
-        % end
-        % if isempty(gcp('nocreate'))
-        %     parpool('local', num_workers);
-        % end
-
-
-        iteration_counts = zeros(height, width); 
-
-        parfor xp = 1:width
-            %to fix sliced variable conflict:
-            column = zeros(height, 1);
-            for py = 1:height
-                x0 = (xp/width)*2.5 - 2.0;
-                y0 = (py/height) * 2.4 -1.2;
-                x = 0; y = 0; 
-                iteration = 0; %making this a temp variable to speed up more
+function iteration_counts = mandelbrot_parallel(width, height, max_iterations)
+    % Preallocate the entire matrix to avoid memory reallocation overhead
+    iteration_counts = zeros(height, width);
     
-                while (iteration < max_iterations) && (x^2 + y^2 <= 4)
-                    x_next = x^2 - y^2 + x0;
-                    y_next = 2*x*y + y0;
-                    x = x_next;
-                    y = y_next;
-                    iteration = iteration + 1;
-                end
-                column(py) = iteration;
+    % parfor over rows allows MATLAB to dynamically load-balance
+    parfor py = 1:height
+        % Calculate y0 once per row
+        y0 = (py / height) * 2.4 - 1.2; 
+        
+        % Preallocate a local row vector to minimize IPC overhead
+        local_row = zeros(1, width);
+        
+        for xp = 1:width
+            x0 = (xp / width) * 2.5 - 2.0;
+            x = 0.0;  
+            y = 0.0;
+            iteration = 0;
+            
+            while iteration < max_iterations
+                x2 = x * x;
+                y2 = y * y;
                 
+                if x2 + y2 > 4.0
+                    break;
+                end
+                
+                y = 2.0 * x * y + y0;
+                x = x2 - y2 + x0;
+                iteration = iteration + 1;
             end
-            iteration_counts(:, xp) = column;
+            
+            % saving the pixel to the local row
+            local_row(xp) = iteration;
         end
-
+        
+        % completed row into the sliced output matrix
+        iteration_counts(py, :) = local_row; 
+    end
 end
