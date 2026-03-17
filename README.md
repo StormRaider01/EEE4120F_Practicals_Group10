@@ -13,3 +13,6 @@ Benchmarking manual implementations against built-in MATLAB/Octave functions.
 
 ### Practical 2
 Evaluating serial vs. parallel algorithms using the Parallel Computing Toolbox (PCT).
+
+### Practical 3
+Comparative analysis of Shared Memory vs. Distributed Memory parallel models.
