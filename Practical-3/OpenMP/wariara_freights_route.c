@@ -2,11 +2,11 @@
 // Practical 3: Minimum Energy Consumption Freight Route Optimization
 // =========================================================================
 //
-// GROUP NUMBER:
+// GROUP NUMBER: 10
 //
 // MEMBERS:
-//   - Member 1 Name, Student Number
-//   - Member 2 Name, Student Number
+//   - Member 1 Maarij Alam, ALMMOH017
+//   - Member 2 Saeed Solomon, SLMMOG032
 
 // ========================================================================
 //  PART 1: Minimum Energy Consumption Freight Route Optimization using OpenMP
@@ -19,6 +19,7 @@
 #include <fcntl.h>
 #include <sys/time.h>
 #include <omp.h>
+#include <limits.h>
 
 #define MAX_N 10
 
@@ -30,6 +31,10 @@ int procs = 1;
 
 int n;
 int adj[MAX_N][MAX_N];
+
+// Global shared variables
+int best_cost;
+int best_path[MAX_N];
 
 // ============================================================================
 // Timer: returns time in seconds
@@ -54,9 +59,47 @@ void Usage(char *program) {
   printf("-h \t\tDisplay this help\n");
 }
 
+void branch_and_bound(int current_city, int tree_depth, int current_cost, int visited[MAX_N], int path[MAX_N] )
+{
+    // Base case to see if last city has been reached
+    if (tree_depth == n) {
+
+        #pragma omp critical
+        {
+            if (current_cost < best_cost) {
+                best_cost = current_cost;
+                for (int i = 0; i < n; i++) {
+                    best_path[i] = path[i];
+                }
+            }
+        }
+        return;
+    }
+
+    // Go to next unvisited city
+    for (int next_city = 0; next_city < n; next_city++) {
+        if (!visited[next_city]) {
+            int new_cost = current_cost + adj[current_city][next_city];
+
+            // Prune if new cost is already worse than best cost
+            if (new_cost < best_cost) {
+                visited[next_city] = 1;
+                path[tree_depth] = next_city;
+
+                branch_and_bound(next_city, tree_depth + 1, new_cost, visited, path);
+
+                // Backtrack so other paths from current_city can be explored
+                visited[next_city] = 0;
+            }
+        }
+    }
+}
+
 
 int main(int argc, char **argv)
 {
+    // start init timer
+    double t_init_start = gettime();
     
     int opt;
     int i, j;
@@ -141,8 +184,61 @@ int main(int argc, char **argv)
 
     
     // TODO: compute solution to minimum energy consumption problem here and write to outfile
+   // Stop init timer and start compute timer
+    double t_init_end = gettime();
+    double t_init = t_init_end - t_init_start;
+    double t_compute_start = gettime();
 
+    // Set number of threads for OpenMP
+    omp_set_num_threads(procs);
+    best_cost = INT_MAX; // Initialize best cost to a very large number
+
+    #pragma omp parallel
+    {
+
+        // Local variables for each thread
+        int visited[MAX_N] = {0};
+        int path[MAX_N];
+
+        // Starting at city 1
+        visited[0] = 1;
+        path[0] = 0;
+
+        // Give threads different starting points to explore
+        #pragma omp for schedule(dynamic)
+        for (int next_city = 1; next_city < n; next_city++) {
+            int new_cost = adj[0][next_city];
+
+            if (new_cost < best_cost) {
+                visited[next_city] = 1;
+                path[1] = next_city;
+
+                branch_and_bound(next_city, 2, new_cost, visited, path);
+
+                // Backtrack so other paths from city 1 can be explored
+                visited[next_city] = 0;
+            }
+        }
+
+    }
+
+    // Stop timer
+        double t_compute_end = gettime();
+        double t_compute = t_compute_end - t_compute_start;
+
+        // Print timing results
+        printf("Initialisation time : %.6f seconds\n", t_init);
+        printf("Computation time    : %.6f seconds\n", t_compute);
+        printf("Total time          : %.6f seconds\n", t_init + t_compute);
     
+    
+        // Write best path to output file
+        for (i = 0; i < n; i++) {
+            fprintf(outfile, "%d ", best_path[i] + 1); // +1 to convert from 0-based to 1-based indexing
+        }
+        fprintf(outfile, "\n");
+        fprintf(outfile, "Total energy: %d\n", best_cost);
+        fclose(outfile);
 
     return 0;
 }
