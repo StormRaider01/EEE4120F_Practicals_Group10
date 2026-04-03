@@ -1,0 +1,3 @@
+Minimum cost: 105
+Path: 1 4 2 3 
+Computation time: 0.000001 seconds
