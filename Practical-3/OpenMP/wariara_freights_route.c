@@ -168,7 +168,7 @@ int main(int argc, char **argv)
     }
 
     if (success_flag) {
-        outfile = fopen(output_file, "w");
+        outfile = fopen(output_file, "a");
         if (outfile == NULL) {
             fprintf(stderr, "Error: Cannot open output file '%s'\n", output_file);
             perror("");
@@ -223,22 +223,28 @@ int main(int argc, char **argv)
     }
 
     // Stop timer
-        double t_compute_end = gettime();
-        double t_compute = t_compute_end - t_compute_start;
+    double t_compute_end = gettime();
+    double t_compute = t_compute_end - t_compute_start;
 
-        // Print timing results
-        printf("Initialisation time : %.6f seconds\n", t_init);
-        printf("Computation time    : %.6f seconds\n", t_compute);
-        printf("Total time          : %.6f seconds\n", t_init + t_compute);
-    
-    
-        // Write best path to output file
+    // Print timing results to Console
+    printf("Initialisation time : %.8f seconds\n", t_init);
+    printf("Computation time    : %.8f seconds\n", t_compute);
+    printf("Total time          : %.8f seconds\n", t_init + t_compute);
+
+    if (outfile != NULL) {
+        fprintf(outfile, "--- Run with %d Threads ---\n", procs);
+        fprintf(outfile, "Minimum cost: %d\n", best_cost);
+        fprintf(outfile, "Path: ");
         for (i = 0; i < n; i++) {
-            fprintf(outfile, "%d ", best_path[i] + 1); // +1 to convert from 0-based to 1-based indexing
+            fprintf(outfile, "%d ", best_path[i] + 1); // convert to 1-based indexing
         }
         fprintf(outfile, "\n");
-        fprintf(outfile, "Total energy: %d\n", best_cost);
+        
+        // Explicitly print the split timings to the file so you can calculate speedup
+        fprintf(outfile, "T_init: %.8f sec | T_comp: %.8f sec\n\n", t_init, t_compute);
+        
         fclose(outfile);
+    }
 
     return 0;
 }

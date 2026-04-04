@@ -1,2 +1,32 @@
 1 4 2 3 
 Total energy: 105
+--- Run with 1 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.01764011 sec | T_comp: 0.00001907 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00499010 sec | T_comp: 0.00021100 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00516510 sec | T_comp: 0.00022197 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00451112 sec | T_comp: 0.00085211 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00544810 sec | T_comp: 0.00080705 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00501394 sec | T_comp: 0.00052691 sec
+

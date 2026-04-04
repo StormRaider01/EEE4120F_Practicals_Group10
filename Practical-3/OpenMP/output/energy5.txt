@@ -1,0 +1,30 @@
+--- Run with 1 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.01791692 sec | T_comp: 0.00002193 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00498700 sec | T_comp: 0.00031400 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00501704 sec | T_comp: 0.00017691 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00580287 sec | T_comp: 0.00061607 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00657105 sec | T_comp: 0.00068498 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00512719 sec | T_comp: 0.00063801 sec
+

@@ -1,0 +1,35 @@
+--- Run with 1 Processes ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.26413703 sec | T_comp: 0.00009799 sec
+
+--- Run with 2 Processes ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.23379493 sec | T_comp: 0.00003481 sec
+
+--- Run with 4 Processes ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.25362396 sec | T_comp: 0.00002098 sec
+
+--- Run with 6 Processes ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.27539110 sec | T_comp: 0.00024891 sec
+
+--- Run with 8 Processes ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.26377511 sec | T_comp: 0.00004101 sec
+
+--- Run with 10 Processes ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.27092981 sec | T_comp: 0.00023603 sec
+
+--- Run with 12 Processes ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.29231882 sec | T_comp: 0.00013280 sec
+

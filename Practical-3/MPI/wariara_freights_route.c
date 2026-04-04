@@ -87,6 +87,7 @@ void branch_and_bound(int current_city, int tree_depth, int current_cost,
 
 int main(int argc, char **argv)
 {
+    double t_init_start = gettime();
     int rank, nprocs;
     int opt;
     int i, j;
@@ -152,7 +153,7 @@ int main(int argc, char **argv)
             }
         }
         if (success_flag) {
-            outfile = fopen(output_file, "w");
+            outfile = fopen(output_file, "a");
             if (outfile == NULL) {
                 fprintf(stderr, "Error: Cannot open output file '%s'\n", output_file);
                 perror("");
@@ -175,6 +176,9 @@ int main(int argc, char **argv)
 
   
     MPI_Bcast(&adj[0][0], MAX_N * MAX_N, MPI_INT, 0, MPI_COMM_WORLD);
+    double t_init_end = gettime();
+    
+    double t_init = t_init_end - t_init_start;
 
     
     printf("Process %d received adjacency matrix:\n", rank);
@@ -191,8 +195,8 @@ int main(int argc, char **argv)
     // Be careful on which process rank writes to the output file to avoid conflicts!
     
     // ======================= COMPUTATION START =========================
-    double t_start = gettime();
-
+    
+    double t_comp_start = gettime();
     // Each process explores different second-city branches
     int visited[MAX_N] = {0};
     int path[MAX_N];
@@ -217,13 +221,12 @@ int main(int argc, char **argv)
         branch_and_bound(next_city, 2, cost, local_visited, local_path);
     }
 
-    double t_end = gettime();
-    double local_time = t_end - t_start;
+    //double t_end = gettime();
+    //double local_time = t_end - t_start;
 
-    // ======================= GATHER RESULTS =========================
-
-    // Gather all best costs at root
-    int all_costs[MAX_N];
+    // FIX 1: Array size must match nprocs, otherwise 12 processors will crash MAX_N (10)
+    int all_costs[nprocs]; 
+    
     MPI_Gather(&best_cost, 1, MPI_INT,
             all_costs, 1, MPI_INT,
             0, MPI_COMM_WORLD);
@@ -244,7 +247,7 @@ int main(int argc, char **argv)
         }
     }
 
-    // Broadcast best_rank message to all thread
+    // Broadcast best_rank message to all threads
     MPI_Bcast(&best_rank, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
     // ======================= SEND BEST PATH =========================
@@ -269,23 +272,32 @@ int main(int argc, char **argv)
                     MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         }
 
-        // Write output
-        fprintf(outfile, "Minimum cost: %d\n", global_best_cost);
-        fprintf(outfile, "Path: ");
-        for (i = 0; i < n; i++)
-        {
-            fprintf(outfile, "%d ", final_path[i] + 1); // convert to 1-based
-        }
-        fprintf(outfile, "\n");
+        double t_compute_end = gettime();
+        double t_comp = t_compute_end - t_comp_start;
 
-        fprintf(outfile, "Computation time: %f seconds\n", local_time);
-
-        fclose(outfile);
-
+        // Print to Console
+        printf("Initialisation time : %.8f seconds\n", t_init);
+        printf("Computation time    : %.8f seconds\n", t_comp);
+        printf("Total time          : %.8f seconds\n", t_init + t_comp);
         printf("Done. Best cost = %d\n", global_best_cost);
-    }
 
-    
+        // FIX 2: Write output perfectly to the text file
+        if (outfile != NULL) {
+            fprintf(outfile, "--- Run with %d Processes ---\n", nprocs);
+            fprintf(outfile, "Minimum cost: %d\n", global_best_cost);
+            fprintf(outfile, "Path: ");
+            for (i = 0; i < n; i++)
+            {
+                fprintf(outfile, "%d ", final_path[i] + 1); // convert to 1-based
+            }
+            fprintf(outfile, "\n");
+
+            // Explicitly print the split timings for your report calculations
+            fprintf(outfile, "T_init: %.8f sec | T_comp: %.8f sec\n\n", t_init, t_comp);
+                
+            fclose(outfile);
+        }
+    }
 
     MPI_Finalize();
     return 0;

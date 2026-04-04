@@ -1,25 +1,73 @@
+# ==========================================
+# OpenMP Compiler and Flags
+# ==========================================
+CC = gcc
+CFLAGS = -O3 -Wall -fopenmp
+CFLAGS_DEBUG = -g -Wall -fopenmp
 
-CC=gcc
-CFLAGS=-O3 -fopenmp
-CFLAGS_DEBUG=-g -fopenmp
-ARGS=
+# ==========================================
+# Targets and Sources
+# ==========================================
+TARGET = wariara_freights_route
+DEBUG_TARGET = wariara_freights_route_debug
+SRC = wariara_freights_route.c
 
-all: wariara_freights_route wariara_freights_route_debug
+# ==========================================
+# Directories and Benchmarking Variables
+# ==========================================
+INPUT_DIR = input
+OUTPUT_DIR = output
 
-.PHONY: clean
+# Default threads for a standard run
+P ?= 12
+
+# Thread counts for benchmarking
+PROCS = 1 2 4 8 10 12
+FILES = 4 5 6 7 8 9 10
+
+# ==========================================
+# Build Rules
+# ==========================================
+
+all: $(TARGET) $(DEBUG_TARGET)
+
+.PHONY: clean benchmark run run_debug
 
 clean: 
-	rm -rf wariara_freights_route wariara_freights_route_debug *~ *.o
+	rm -rf $(TARGET) $(DEBUG_TARGET) *~ *.o
+	rm -rf $(OUTPUT_DIR)/*
 
-wariara_freights_route: wariara_freights_route.c
-	$(CC) $(CFLAGS) $< -o wariara_freights_route
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) $< -o $(TARGET)
 
-wariara_freights_route_debug: wariara_freights_route.c
-	$(CC) $(CFLAGS_DEBUG) $< -o wariara_freights_route_debug
+$(DEBUG_TARGET): $(SRC)
+	$(CC) $(CFLAGS_DEBUG) $< -o $(DEBUG_TARGET)
 
-run: wariara_freights_route
-	./wariara_freights_route $(ARGS)
+# ==========================================
+# Execution Rules (Standard)
+# ==========================================
 
-run_debug: wariara_freights_route_debug
-	./wariara_freights_route_debug $(ARGS)
+run: $(TARGET)
+	@mkdir -p $(OUTPUT_DIR)
+	./$(TARGET) -p $(P) -i $(INPUT_DIR)/energy10 -o $(OUTPUT_DIR)/test_out.txt
 
+run_debug: $(DEBUG_TARGET)
+	@mkdir -p $(OUTPUT_DIR)
+	./$(DEBUG_TARGET) -p $(P) -i $(INPUT_DIR)/energy10 -o $(OUTPUT_DIR)/test_debug.txt
+
+# ==========================================
+# Execution Rules (Automated Benchmarking)
+# ==========================================
+
+benchmark: $(TARGET)
+	@mkdir -p $(OUTPUT_DIR)
+	@echo "Starting OpenMP benchmark for Speedup Calculation..."
+	@for p in $(PROCS); do \
+		echo "====================================="; \
+		echo "Testing with $$p threads:"; \
+		for f in $(FILES); do \
+			echo "  -> energy$$f.txt"; \
+			./$(TARGET) -p $$p -i $(INPUT_DIR)/energy$$f -o $(OUTPUT_DIR)/energy$$f.txt; \
+		done; \
+	done
+	@echo "Benchmarking complete. Check the $(OUTPUT_DIR) folder."
