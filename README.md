@@ -16,3 +16,6 @@ Evaluating serial vs. parallel algorithms using the Parallel Computing Toolbox (
 
 ### Practical 3
 Comparative analysis of Shared Memory vs. Distributed Memory parallel models.
+
+### Practical 4
+Introduction to HDL programming and simulation using Icarus Verilog (iverilog).
