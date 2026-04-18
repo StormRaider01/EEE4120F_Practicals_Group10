@@ -2,11 +2,11 @@
 // Practical 4: StarCore-1 — Single-Cycle Processor in Verilog
 // =========================================================================
 //
-// GROUP NUMBER:
+// GROUP NUMBER: 10
 //
 // MEMBERS:
-//   - Member 1 Name, Student Number
-//   - Member 2 Name, Student Number
+//   - Member 1 Maarij Alam, ALMMOH017
+//   - Member 2 Saeed Solomon, SLMMOG032
 
 // File        : GPR.v
 // Description : General Purpose Register File.
@@ -40,20 +40,22 @@ module GPR (
     // -------------------------------------------------------------------------
     // TODO: Declare the internal register array.
     //       You need an array of 8 registers, each 16 bits wide.
-    //
-    //       reg [15:0] reg_array [7:0];
+
+    reg [15:0] reg_array [7:0];
+
     // -------------------------------------------------------------------------
 
 
     // -------------------------------------------------------------------------
     // TODO: Initialise all registers to zero at simulation start.
     //       Use an initial block with a for loop.
-    //
-    //       integer i;
-    //       initial begin
-    //           for (i = 0; i < 8; i = i + 1)
-    //               reg_array[i] <= 16'd0;
-    //       end
+    
+    integer i;
+    initial begin
+        for (i = 0; i < 8; i = i + 1)
+            reg_array[i] <= 16'd0;
+    end
+
     // -------------------------------------------------------------------------
 
 
@@ -69,6 +71,12 @@ module GPR (
     //
     //       IMPORTANT: Use non-blocking assignment (<=) here.
     //                  This models a real flip-flop-based register.
+
+    always @(posedge clk) begin
+        if (reg_write_en)
+            reg_array[reg_write_dest] <= reg_write_data;
+    end
+
     // -------------------------------------------------------------------------
 
 
@@ -84,6 +92,10 @@ module GPR (
     //       if reg_read_addr_1 == reg_write_dest when reg_write_en is high,
     //       the read port returns the OLD value (before the write commits).
     //       Document this write-before-read behaviour in your report.
+
+    assign reg_read_data_1 = reg_array[reg_read_addr_1];
+    assign reg_read_data_2 = reg_array[reg_read_addr_2];
+
     // -------------------------------------------------------------------------
 
 
