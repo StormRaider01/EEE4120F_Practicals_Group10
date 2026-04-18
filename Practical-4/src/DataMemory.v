@@ -2,11 +2,11 @@
 // Practical 4: StarCore-1 — Single-Cycle Processor in Verilog
 // =========================================================================
 //
-// GROUP NUMBER:
+// GROUP NUMBER: 10
 //
 // MEMBERS:
-//   - Member 1 Name, Student Number
-//   - Member 2 Name, Student Number
+//   - Member 1 Maarij Alam, ALMMOH017
+//   - Member 2 Saeed Solomon, SLMMOG032
 
 // File        : DataMemory.v
 // Description : Data Memory (RAM).
@@ -41,6 +41,9 @@ module DataMemory (
     //       It should hold `ROW_D entries, each `COL bits wide.
     //
     //       reg [`COL-1:0] memory [`ROW_D-1:0];
+
+    reg [`COL-1:0] memory [`ROW_D-1:0];
+
     // -------------------------------------------------------------------------
 
 
@@ -54,6 +57,9 @@ module DataMemory (
     //       This maps byte addresses 0,1,2,3,4,5,6,7 to words 0–7.
     //       (In a full system the byte offset within a word would also be
     //       handled, but StarCore-1 only supports 16-bit aligned accesses.)
+
+    wire [2:0] ram_addr = mem_access_addr[2:0];
+
     // -------------------------------------------------------------------------
 
 
@@ -77,6 +83,12 @@ module DataMemory (
     //           `SIM_TIME;
     //           $fclose(log_fd);
     //       end
+
+    integer log_fd;
+    initial begin
+        $readmemb("./test/test.data", memory);
+    end
+
     // -------------------------------------------------------------------------
 
 
@@ -91,6 +103,12 @@ module DataMemory (
     //       end
     //
     //       IMPORTANT: Use non-blocking assignment (<=).
+
+    always @(posedge clk) begin
+        if (mem_write_en)
+            memory[ram_addr] <= mem_write_data;
+    end
+
     // -------------------------------------------------------------------------
 
 
@@ -101,6 +119,9 @@ module DataMemory (
     //       during non-LD instructions).
     //
     //       assign mem_read_data = mem_read ? memory[ram_addr] : 16'd0;
+
+    assign mem_read_data = mem_read ? memory[ram_addr] : 16'd0;
+
     // -------------------------------------------------------------------------
 
 
