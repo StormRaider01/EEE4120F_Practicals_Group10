@@ -72,13 +72,36 @@ module DataMemory_tb;
         //       else
         //           $display("PASS [T%0d]", test_id);
         //       test_id = test_id + 1;
-
+            mem_read = 1'b1;
+            for (integer i = 0; i < 8; i = i + 1) begin
+                mem_access_addr = i[15:0]; #10;
+                $display("Reading Addr %0d: Data = %h", i, mem_read_data);
+                test_id = test_id + 1;
+            end
 
         // ------------------------------------------------------------------
         // TEST GROUP 2: Write new values to all 8 locations, then read back
         // ------------------------------------------------------------------
         $display("--- Group 2: Write then read all 8 locations ---");
+        mem_write_en = 1'b1;
+        for (integer i = 0; i < 8; i = i + 1) begin
+            mem_access_addr = i[15:0];
+            mem_write_data  = 16'hA000 + i; // Distinct value (A000, A001...)
+            @(posedge clk); #1; // Wait for write to commit
+        end
+        mem_write_en = 1'b0;
 
+        // Verify those writes
+        mem_read = 1'b1;
+        for (integer i = 0; i < 8; i = i + 1) begin
+            mem_access_addr = i[15:0]; #10;
+            if (mem_read_data !== (16'hA000 + i)) begin
+                $display("FAIL [T%0d]: addr=%0d got=%h", test_id, i, mem_read_data);
+                fail_count = fail_count + 1;
+            end else
+                $display("PASS [T%0d]: addr=%0d data correct", test_id, i);
+            test_id = test_id + 1;
+        end
         // TODO: Write a distinct value to each of the 8 addresses using
         //       mem_write_en and posedge clk, then read each back.
         //
@@ -111,7 +134,14 @@ module DataMemory_tb;
         //       else
         //           $display("PASS [T%0d]: output = 0 when mem_read=0", test_id);
         //       test_id = test_id + 1;
-
+        mem_read = 1'b0;
+        mem_access_addr = 16'd2; #10;
+        if (mem_read_data !== 16'd0) begin
+            $display("FAIL [T%0d]: mem_read=0 but output=%h", test_id, mem_read_data);
+            fail_count = fail_count + 1;
+        end else
+            $display("PASS [T%0d]: output gated to 0", test_id);
+        test_id = test_id + 1;
 
         // ------------------------------------------------------------------
         // TEST GROUP 4: Write then immediately read on the next cycle
@@ -120,7 +150,26 @@ module DataMemory_tb;
 
         // TODO: Write to address 3, then on the very next cycle read back
         //       from address 3 and confirm the new value is returned.
+        // Step A: Write to address 3
+        mem_write_en    = 1'b1;
+        mem_read        = 1'b0;
+        mem_access_addr = 16'd3;
+        mem_write_data  = 16'hBEEF;
+        @(posedge clk); #1; // Write happens on this edge
 
+        // Step B: Read from address 3 on the very next cycle
+        mem_write_en    = 1'b0;
+        mem_read        = 1'b1;
+        mem_access_addr = 16'd3; 
+        #5; // Wait for combinational logic to settle
+
+        if (mem_read_data !== 16'hBEEF) begin
+            $display("FAIL [T%0d]: Immediate read failed. Got=%h", test_id, mem_read_data);
+            fail_count = fail_count + 1;
+        end else
+            $display("PASS [T%0d]: Immediate read success (Data: %h)", test_id, mem_read_data);
+        
+        test_id = test_id + 1;
 
         // ------------------------------------------------------------------
         // TEST GROUP 5: Disabled write must not alter memory
@@ -129,7 +178,18 @@ module DataMemory_tb;
 
         // TODO: Assert mem_write_en=0, clock one cycle, then read and confirm
         //       the previous value is unchanged.
-
+        mem_read = 1'b1;
+        mem_access_addr = 16'd4; #10;
+        mem_write_data = 16'hDEAD; // Try to overwrite
+        mem_write_en = 1'b0;
+        @(posedge clk); #1; // Trigger clock
+        
+        if (mem_read_data === 16'hDEAD) begin
+            $display("FAIL [T%0d]: Memory overwritten while write_en=0", test_id);
+            fail_count = fail_count + 1;
+        end else
+            $display("PASS [T%0d]: Memory protected", test_id);
+        test_id = test_id + 1;
 
         $display("");
         if (fail_count == 0)

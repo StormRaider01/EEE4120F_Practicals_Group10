@@ -69,7 +69,9 @@ module InstructionMemory (
     //       end indices in the array to fill. Adjust if your program is longer.
 
     initial begin
-        $readmemb("./test/test.prog", memory, 0, 14);
+        //$readmemb("./test/test.prog", memory, 0, 14);
+        //$readmemb("test/test.prog", memory);
+        $readmemb("test.prog", memory, 0, 14);
     end
 
     // -------------------------------------------------------------------------

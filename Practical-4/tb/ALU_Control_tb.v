@@ -60,11 +60,11 @@ module ALU_Control_tb;
         // TODO: Apply ALUOp=2'b10 with several different opcode values and
         //       verify ALU_Cnt is always 3'b000 (ADD).
         //
-        //       ALUOp=2'b10; Opcode=4'h0; #10;
-        //       check_cnt(ALU_Cnt, 3'b000, test_id); test_id=test_id+1;
+               ALUOp=2'b10; Opcode=4'h0; #10;
+               check_cnt(ALU_Cnt, 3'b000, test_id); test_id=test_id+1;
         //
-        //       ALUOp=2'b10; Opcode=4'hF; #10;
-        //       check_cnt(ALU_Cnt, 3'b000, test_id); test_id=test_id+1;
+               ALUOp=2'b10; Opcode=4'hF; #10;
+              check_cnt(ALU_Cnt, 3'b000, test_id); test_id=test_id+1;
 
 
         // ------------------------------------------------------------------
@@ -74,6 +74,12 @@ module ALU_Control_tb;
 
         // TODO: Apply ALUOp=2'b01 with several opcode values and verify
         //       ALU_Cnt is always 3'b001 (SUB).
+        ALUOp=2'b01; Opcode=4'hB; #10; // BEQ
+        check_cnt(ALU_Cnt, 3'b001, test_id); test_id=test_id+1;
+
+        ALUOp=2'b01; Opcode=4'hC; #10; // BNE
+        check_cnt(ALU_Cnt, 3'b001, test_id); test_id=test_id+1;
+        
 
 
         // ------------------------------------------------------------------
@@ -91,7 +97,14 @@ module ALU_Control_tb;
         //       Opcode 4'h7 (AND) -> ALU_Cnt = 3'b101
         //       Opcode 4'h8 (OR)  -> ALU_Cnt = 3'b110
         //       Opcode 4'h9 (SLT) -> ALU_Cnt = 3'b111
-        //
+        ALUOp=2'b00; Opcode=4'h2; #10; check_cnt(ALU_Cnt, 3'b000, test_id); test_id=test_id+1; // ADD
+        ALUOp=2'b00; Opcode=4'h3; #10; check_cnt(ALU_Cnt, 3'b001, test_id); test_id=test_id+1; // SUB
+        ALUOp=2'b00; Opcode=4'h4; #10; check_cnt(ALU_Cnt, 3'b010, test_id); test_id=test_id+1; // INV
+        ALUOp=2'b00; Opcode=4'h5; #10; check_cnt(ALU_Cnt, 3'b011, test_id); test_id=test_id+1; // SHL
+        ALUOp=2'b00; Opcode=4'h6; #10; check_cnt(ALU_Cnt, 3'b100, test_id); test_id=test_id+1; // SHR
+        ALUOp=2'h00; Opcode=4'h7; #10; check_cnt(ALU_Cnt, 3'b101, test_id); test_id=test_id+1; // AND
+        ALUOp=2'h00; Opcode=4'h8; #10; check_cnt(ALU_Cnt, 3'b110, test_id); test_id=test_id+1; // OR
+        ALUOp=2'b00; Opcode=4'h9; #10; check_cnt(ALU_Cnt, 3'b111, test_id); test_id=test_id+1; // SLT
         //       ALUOp=2'b00; Opcode=4'h2; #10;
         //       check_cnt(ALU_Cnt, 3'b000, test_id); test_id=test_id+1;
         //       ... etc.
@@ -104,7 +117,8 @@ module ALU_Control_tb;
 
         // TODO: Apply ALUOp=2'b00 with an undefined opcode (e.g. 4'hA or 4'hF)
         //       and verify ALU_Cnt defaults to 3'b000.
-
+        ALUOp=2'b00; Opcode=4'hA; #10; // Reserved/Undefined
+        check_cnt(ALU_Cnt, 3'b000, test_id); test_id=test_id+1;
 
         $display("");
         if (fail_count == 0)
