@@ -1,0 +1,203 @@
+$date
+	Tue Apr 21 15:26:23 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module ALU_tb $end
+$var wire 1 ! zero $end
+$var wire 16 " result [15:0] $end
+$var reg 16 # a [15:0] $end
+$var reg 3 $ alu_control [2:0] $end
+$var reg 16 % b [15:0] $end
+$var integer 32 & fail_count [31:0] $end
+$var integer 32 ' test_id [31:0] $end
+$scope module uut $end
+$var wire 16 ( a [15:0] $end
+$var wire 3 ) alu_control [2:0] $end
+$var wire 16 * b [15:0] $end
+$var wire 1 ! zero $end
+$var reg 16 + result [15:0] $end
+$upscope $end
+$scope task check_result $end
+$var reg 16 , expected [15:0] $end
+$var reg 16 - got [15:0] $end
+$var reg 64 . id [63:0] $end
+$upscope $end
+$scope task check_zero $end
+$var reg 1 / expected $end
+$var reg 1 0 got $end
+$var reg 64 1 id [63:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx 1
+x0
+x/
+bx .
+bx -
+bx ,
+b1111 +
+b101 *
+b0 )
+b1010 (
+b1 '
+b0 &
+b101 %
+b0 $
+b1010 #
+b1111 "
+0!
+$end
+#10000
+1!
+b0 "
+b0 +
+b1 %
+b1 *
+b1111111111111111 #
+b1111111111111111 (
+b10 '
+b1 .
+b1111 ,
+b1111 -
+#20000
+0!
+b101 "
+b101 +
+b1 $
+b1 )
+b101 %
+b101 *
+b1010 #
+b1010 (
+b11 '
+b10 .
+b0 ,
+b0 -
+#30000
+1!
+b0 "
+b0 +
+b111 %
+b111 *
+b111 #
+b111 (
+b100 1
+0/
+00
+b101 '
+b11 .
+b101 ,
+b101 -
+#40000
+0!
+b101010101010101 "
+b101010101010101 +
+b10 $
+b10 )
+b1010101010101010 #
+b1010101010101010 (
+b110 1
+1/
+10
+b111 '
+b101 .
+b0 ,
+b0 -
+#50000
+1!
+b0 "
+b0 +
+b1111111111111111 #
+b1111111111111111 (
+b1000 '
+b111 .
+b101010101010101 ,
+b101010101010101 -
+#60000
+0!
+b10000 "
+b10000 +
+b11 $
+b11 )
+b100 %
+b100 *
+b1 #
+b1 (
+b1001 1
+b1010 '
+b1000 .
+b0 ,
+b0 -
+#70000
+b1 "
+b1 +
+b100 $
+b100 )
+b10000 #
+b10000 (
+b1011 '
+b1010 .
+b10000 ,
+b10000 -
+#80000
+b10100000101 "
+b10100000101 +
+b101 $
+b101 )
+b111100001111 %
+b111100001111 *
+b1010010110100101 #
+b1010010110100101 (
+b1100 '
+b1011 .
+b1 ,
+b1 -
+#90000
+b1010111110101111 "
+b1010111110101111 +
+b110 $
+b110 )
+b1101 '
+b1100 .
+b10100000101 ,
+b10100000101 -
+#100000
+b1 "
+b1 +
+b111 $
+b111 )
+b1010 %
+b1010 *
+b101 #
+b101 (
+b1110 '
+b1101 .
+b1010111110101111 ,
+b1010111110101111 -
+#110000
+1!
+b0 "
+b0 +
+b101 %
+b101 *
+b1010 #
+b1010 (
+b1111 '
+b1110 .
+b1 ,
+b1 -
+#120000
+b10000 '
+b1111 .
+b0 ,
+b0 -

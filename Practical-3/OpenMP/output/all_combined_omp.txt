@@ -1,0 +1,1050 @@
+--- Run with 1 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.01723194 sec | T_comp: 0.00102687 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00440502 sec | T_comp: 0.00132608 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00379515 sec | T_comp: 0.00101185 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00369787 sec | T_comp: 0.00102305 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00355792 sec | T_comp: 0.00116110 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00492406 sec | T_comp: 0.00072694 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00546312 sec | T_comp: 0.00070286 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00579095 sec | T_comp: 0.00083303 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00480700 sec | T_comp: 0.00066805 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00478816 sec | T_comp: 0.00081491 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00495911 sec | T_comp: 0.00060487 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00491595 sec | T_comp: 0.00059605 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00445104 sec | T_comp: 0.00052714 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00484204 sec | T_comp: 0.00063705 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00496101 sec | T_comp: 0.00050807 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00555706 sec | T_comp: 0.00050402 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00612092 sec | T_comp: 0.00056410 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00593805 sec | T_comp: 0.00058818 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00607681 sec | T_comp: 0.00050306 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00590491 sec | T_comp: 0.00058317 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00441909 sec | T_comp: 0.00055885 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00497890 sec | T_comp: 0.00060701 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00556493 sec | T_comp: 0.00047803 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00532293 sec | T_comp: 0.00062609 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00581908 sec | T_comp: 0.00058007 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00441790 sec | T_comp: 0.00059414 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00595689 sec | T_comp: 0.00061512 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00571108 sec | T_comp: 0.00064492 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00592113 sec | T_comp: 0.00064802 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00426698 sec | T_comp: 0.00056195 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.02029920 sec | T_comp: 0.00006986 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00453496 sec | T_comp: 0.00001907 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00405407 sec | T_comp: 0.00002098 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00469112 sec | T_comp: 0.00002599 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00485396 sec | T_comp: 0.00001907 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00475693 sec | T_comp: 0.00013900 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00482988 sec | T_comp: 0.00010800 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00442982 sec | T_comp: 0.00009918 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00425196 sec | T_comp: 0.00008321 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00483394 sec | T_comp: 0.00067306 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00516796 sec | T_comp: 0.00014591 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00466204 sec | T_comp: 0.00016403 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00519180 sec | T_comp: 0.00015306 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00537395 sec | T_comp: 0.00018120 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00521421 sec | T_comp: 0.00024891 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00399303 sec | T_comp: 0.00043988 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00514102 sec | T_comp: 0.00034714 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00568604 sec | T_comp: 0.00033402 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00519300 sec | T_comp: 0.00032187 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00627184 sec | T_comp: 0.00028110 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00537491 sec | T_comp: 0.00032401 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00569296 sec | T_comp: 0.00039005 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00561786 sec | T_comp: 0.00037313 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00583506 sec | T_comp: 0.00031590 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00530386 sec | T_comp: 0.00039411 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00611711 sec | T_comp: 0.00033998 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00573015 sec | T_comp: 0.00033784 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00522900 sec | T_comp: 0.00039196 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00588799 sec | T_comp: 0.00032902 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 105
+Path: 1 4 2 3 
+T_init: 0.00601697 sec | T_comp: 0.00035405 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.02018595 sec | T_comp: 0.00001717 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00501513 sec | T_comp: 0.00002193 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00425816 sec | T_comp: 0.00002599 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00367284 sec | T_comp: 0.00002098 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00451279 sec | T_comp: 0.00001502 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00449705 sec | T_comp: 0.00011492 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00528002 sec | T_comp: 0.00009108 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00449395 sec | T_comp: 0.00014114 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00431895 sec | T_comp: 0.00015998 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00422215 sec | T_comp: 0.00008702 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00429010 sec | T_comp: 0.00016594 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00435591 sec | T_comp: 0.00017810 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00518799 sec | T_comp: 0.00022697 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00389791 sec | T_comp: 0.00017095 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00373602 sec | T_comp: 0.00018907 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00514698 sec | T_comp: 0.00038409 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00532603 sec | T_comp: 0.00025582 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00525403 sec | T_comp: 0.00025797 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00617909 sec | T_comp: 0.00028086 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00591397 sec | T_comp: 0.00032592 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00461388 sec | T_comp: 0.00037503 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00517821 sec | T_comp: 0.00028777 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00494194 sec | T_comp: 0.00031519 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00452685 sec | T_comp: 0.00030899 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00546813 sec | T_comp: 0.00036097 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00557590 sec | T_comp: 0.00046992 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00509810 sec | T_comp: 0.00038886 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00631785 sec | T_comp: 0.00036621 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00477004 sec | T_comp: 0.00031304 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.00598407 sec | T_comp: 0.00043583 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.01573801 sec | T_comp: 0.00001907 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00488496 sec | T_comp: 0.00001621 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00371099 sec | T_comp: 0.00002098 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00423694 sec | T_comp: 0.00002408 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00514603 sec | T_comp: 0.00002098 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00457883 sec | T_comp: 0.00009012 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00406694 sec | T_comp: 0.00011206 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00415492 sec | T_comp: 0.00011921 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00438690 sec | T_comp: 0.00009108 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00464416 sec | T_comp: 0.00009298 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00327706 sec | T_comp: 0.00018501 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00334477 sec | T_comp: 0.00015807 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00351501 sec | T_comp: 0.00016308 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00372410 sec | T_comp: 0.00017881 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00386119 sec | T_comp: 0.00023794 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00533915 sec | T_comp: 0.00030589 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00477695 sec | T_comp: 0.00023508 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00627017 sec | T_comp: 0.00027490 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00622201 sec | T_comp: 0.00029087 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00622487 sec | T_comp: 0.00047207 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00572395 sec | T_comp: 0.00032902 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00608706 sec | T_comp: 0.00031781 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00573707 sec | T_comp: 0.00038195 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00607991 sec | T_comp: 0.00031614 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00465608 sec | T_comp: 0.00028396 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00625086 sec | T_comp: 0.00038600 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00641823 sec | T_comp: 0.00047493 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00568509 sec | T_comp: 0.00040507 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00567007 sec | T_comp: 0.00033712 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 124
+Path: 1 4 6 5 2 3 
+T_init: 0.00548410 sec | T_comp: 0.00038195 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.01903200 sec | T_comp: 0.00002599 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00424504 sec | T_comp: 0.00002313 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00411987 sec | T_comp: 0.00002503 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00389814 sec | T_comp: 0.00002599 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00465584 sec | T_comp: 0.00002909 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00438499 sec | T_comp: 0.00014782 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00467086 sec | T_comp: 0.00009513 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00366092 sec | T_comp: 0.00009298 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00394487 sec | T_comp: 0.00013399 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00417209 sec | T_comp: 0.00012684 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00460291 sec | T_comp: 0.00019097 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00457597 sec | T_comp: 0.00020289 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00493193 sec | T_comp: 0.00018215 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00599408 sec | T_comp: 0.00017095 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00550199 sec | T_comp: 0.00013494 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00610900 sec | T_comp: 0.00030017 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00601983 sec | T_comp: 0.00032115 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00607705 sec | T_comp: 0.00034094 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00554585 sec | T_comp: 0.00024915 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00543809 sec | T_comp: 0.00030303 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00595808 sec | T_comp: 0.00029802 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00516391 sec | T_comp: 0.00032115 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00538898 sec | T_comp: 0.00029182 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00600815 sec | T_comp: 0.00031090 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00588489 sec | T_comp: 0.00039411 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00617290 sec | T_comp: 0.00031590 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00586200 sec | T_comp: 0.00035310 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00610304 sec | T_comp: 0.00037003 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00621104 sec | T_comp: 0.00042892 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 145
+Path: 1 4 6 5 3 2 7 
+T_init: 0.00518298 sec | T_comp: 0.00038791 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.01764584 sec | T_comp: 0.00006509 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00475287 sec | T_comp: 0.00005722 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00431991 sec | T_comp: 0.00006294 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00468898 sec | T_comp: 0.00005817 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00493693 sec | T_comp: 0.00006104 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00475121 sec | T_comp: 0.00011778 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00450206 sec | T_comp: 0.00017095 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00454402 sec | T_comp: 0.00016499 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00456619 sec | T_comp: 0.00012088 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00466204 sec | T_comp: 0.00016880 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00502086 sec | T_comp: 0.00022101 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00507712 sec | T_comp: 0.00033402 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00600886 sec | T_comp: 0.00025010 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00470591 sec | T_comp: 0.00023413 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00373101 sec | T_comp: 0.00018787 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00635719 sec | T_comp: 0.00036383 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00604892 sec | T_comp: 0.00027394 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00548220 sec | T_comp: 0.00026584 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00613379 sec | T_comp: 0.00028515 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00473309 sec | T_comp: 0.00034595 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00504994 sec | T_comp: 0.00035214 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00566792 sec | T_comp: 0.00030208 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00446200 sec | T_comp: 0.00028920 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00437713 sec | T_comp: 0.00072289 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00459409 sec | T_comp: 0.00036001 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00589108 sec | T_comp: 0.00045586 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00495982 sec | T_comp: 0.00041604 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00641799 sec | T_comp: 0.00036407 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00493383 sec | T_comp: 0.00031614 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 155
+Path: 1 4 6 5 8 3 2 7 
+T_init: 0.00519800 sec | T_comp: 0.00033712 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.01941204 sec | T_comp: 0.00018501 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00457501 sec | T_comp: 0.00017095 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00343513 sec | T_comp: 0.00017500 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00472307 sec | T_comp: 0.00028801 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00503612 sec | T_comp: 0.00017405 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00466204 sec | T_comp: 0.00018001 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00389314 sec | T_comp: 0.00028086 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00417614 sec | T_comp: 0.00019884 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00457096 sec | T_comp: 0.00020313 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00432301 sec | T_comp: 0.00024295 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00458717 sec | T_comp: 0.00020289 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00558901 sec | T_comp: 0.00019002 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00460720 sec | T_comp: 0.00080585 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00467396 sec | T_comp: 0.00023389 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00525808 sec | T_comp: 0.00019097 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00569201 sec | T_comp: 0.00056791 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00607014 sec | T_comp: 0.00037384 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00645208 sec | T_comp: 0.00032997 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00636601 sec | T_comp: 0.00038505 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00582004 sec | T_comp: 0.00039315 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00613093 sec | T_comp: 0.00034690 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00573707 sec | T_comp: 0.00037503 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00525022 sec | T_comp: 0.00037980 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00564194 sec | T_comp: 0.00047112 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00606108 sec | T_comp: 0.00047302 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00507712 sec | T_comp: 0.00063014 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00475883 sec | T_comp: 0.00039315 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00523806 sec | T_comp: 0.00045896 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00566101 sec | T_comp: 0.00047708 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 171
+Path: 1 4 9 6 5 8 3 2 7 
+T_init: 0.00512314 sec | T_comp: 0.00040293 sec
+

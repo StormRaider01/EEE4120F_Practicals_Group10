@@ -66,14 +66,14 @@ module ALU (
 
     always @(*) begin
         case (alu_control)
-            3’b000 : result = a + b;                            // ADD
-            3’b001 : result = a - b;                            // SUB
-            3’b010 : result = ~a;                               // INV (one ’s complement )
-            3’b011 : result = a << b [3:0];                     // SHL
-            3’b100 : result = a >> b [3:0];                     // SHR
-            3’b101 : result = a & b;                            // AND
-            3’b110 : result = a | b;                            // OR
-            3’b111 : result = (a < b) ? 16’ d1 : 16’ d0;        // SLT
+            3'b000 : result = a + b;                            // ADD
+            3'b001 : result = a - b;                            // SUB
+            3'b010 : result = ~a;                               // INV (one ’s complement )
+            3'b011 : result = a << b[3:0];                      // SHL
+            3'b100 : result = a >> b[3:0];                      // SHR
+            3'b101 : result = a & b;                            // AND
+            3'b110 : result = a | b;                            // OR
+            3'b111 : result = (a < b) ? 16'd1 : 16'd0;          // SLT
             default : result = a + b;                           // Safe default
         endcase
     end

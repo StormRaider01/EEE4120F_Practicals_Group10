@@ -1,30 +1,150 @@
 --- Run with 1 Threads ---
 Minimum cost: 207
 Path: 1 10 4 9 6 5 8 3 2 7 
-T_init: 0.00610089 sec | T_comp: 0.00105810 sec
+T_init: 0.01723194 sec | T_comp: 0.00102687 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00440502 sec | T_comp: 0.00132608 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00379515 sec | T_comp: 0.00101185 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00369787 sec | T_comp: 0.00102305 sec
+
+--- Run with 1 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00355792 sec | T_comp: 0.00116110 sec
 
 --- Run with 2 Threads ---
 Minimum cost: 207
 Path: 1 10 4 9 6 5 8 3 2 7 
-T_init: 0.00544095 sec | T_comp: 0.00068903 sec
+T_init: 0.00492406 sec | T_comp: 0.00072694 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00546312 sec | T_comp: 0.00070286 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00579095 sec | T_comp: 0.00083303 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00480700 sec | T_comp: 0.00066805 sec
+
+--- Run with 2 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00478816 sec | T_comp: 0.00081491 sec
 
 --- Run with 4 Threads ---
 Minimum cost: 207
 Path: 1 10 4 9 6 5 8 3 2 7 
-T_init: 0.00562406 sec | T_comp: 0.00077391 sec
+T_init: 0.00495911 sec | T_comp: 0.00060487 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00491595 sec | T_comp: 0.00059605 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00445104 sec | T_comp: 0.00052714 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00484204 sec | T_comp: 0.00063705 sec
+
+--- Run with 4 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00496101 sec | T_comp: 0.00050807 sec
 
 --- Run with 8 Threads ---
 Minimum cost: 207
 Path: 1 10 4 9 6 5 8 3 2 7 
-T_init: 0.00509095 sec | T_comp: 0.00061488 sec
+T_init: 0.00555706 sec | T_comp: 0.00050402 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00612092 sec | T_comp: 0.00056410 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00593805 sec | T_comp: 0.00058818 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00607681 sec | T_comp: 0.00050306 sec
+
+--- Run with 8 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00590491 sec | T_comp: 0.00058317 sec
 
 --- Run with 10 Threads ---
 Minimum cost: 207
 Path: 1 10 4 9 6 5 8 3 2 7 
-T_init: 0.00550795 sec | T_comp: 0.00084901 sec
+T_init: 0.00441909 sec | T_comp: 0.00055885 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00497890 sec | T_comp: 0.00060701 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00556493 sec | T_comp: 0.00047803 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00532293 sec | T_comp: 0.00062609 sec
+
+--- Run with 10 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00581908 sec | T_comp: 0.00058007 sec
 
 --- Run with 12 Threads ---
 Minimum cost: 207
 Path: 1 10 4 9 6 5 8 3 2 7 
-T_init: 0.00369906 sec | T_comp: 0.00069404 sec
+T_init: 0.00441790 sec | T_comp: 0.00059414 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00595689 sec | T_comp: 0.00061512 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00571108 sec | T_comp: 0.00064492 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00592113 sec | T_comp: 0.00064802 sec
+
+--- Run with 12 Threads ---
+Minimum cost: 207
+Path: 1 10 4 9 6 5 8 3 2 7 
+T_init: 0.00426698 sec | T_comp: 0.00056195 sec
 

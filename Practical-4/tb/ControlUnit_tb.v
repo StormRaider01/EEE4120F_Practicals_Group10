@@ -108,25 +108,46 @@ module ControlUnit_tb;
         // TODO: Apply each opcode and call check_ctrl with expected values.
         //
         //       // LD (opcode = 4'b0000)
-        //       opcode = 4'b0000; #10;
+         opcode = 4'b0000; #10;
         //       //        alu_op  jump  beq   bne   mr    mw    as    rd    mtr   rw    id
-        //       check_ctrl(2'b10, 1'b0, 1'b0, 1'b0, 1'b1, 1'b0, 1'b1, 1'b0, 1'b1, 1'b1, test_id);
-        //       test_id = test_id + 1;
+         check_ctrl(2'b10, 1'b0, 1'b0, 1'b0, 1'b1, 1'b0, 1'b1, 1'b0, 1'b1, 1'b1, test_id);
+         test_id = test_id + 1;
         //
         //       // ST (opcode = 4'b0001)
-        //       opcode = 4'b0001; #10;
-        //       check_ctrl(2'b10, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1, 1'b1, 1'b0, 1'b0, 1'b0, test_id);
-        //       test_id = test_id + 1;
+         opcode = 4'b0001; #10;
+         check_ctrl(2'b10, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1, 1'b1, 1'b0, 1'b0, 1'b0, test_id);
+         test_id = test_id + 1;
         //
         //       // ADD (opcode = 4'b0010)  -- R-type
-        //       opcode = 4'b0010; #10;
-        //       check_ctrl(2'b00, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1, 1'b0, 1'b1, test_id);
-        //       test_id = test_id + 1;
+         opcode = 4'b0010; #10;
+         check_ctrl(2'b00, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1, 1'b0, 1'b1, test_id);
+         test_id = test_id + 1;
         //
         //       // ... continue for all R-type opcodes (0010 through 1001)
+        for (integer i = 2; i <= 9; i = i + 1) begin
+            opcode = i[3:0]; #10;
+            check_ctrl(2'b00, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b1, 1'b0, 1'b1, test_id);
+            test_id = test_id + 1;
+        end
         //       // ... then BEQ (1011), BNE (1100), JMP (1101)
+
+        opcode = 4'b1011; #10; // BEQ
+        check_ctrl(2'b01, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, test_id);
+        test_id = test_id + 1;
+
+        opcode = 4'b1100; #10; // BNE
+        check_ctrl(2'b01, 1'b0, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, test_id);
+        test_id = test_id + 1;
+
+        // --- Jump Instruction ---
+        opcode = 4'b1101; #10; // JMP
+        check_ctrl(2'b00, 1'b1, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, test_id);
+        test_id = test_id + 1;
         //       // ... and reserved (1010) and a default/undefined opcode
         //
+        opcode = 4'b1010; #10; // Must produce all zeros [cite: 76, 116]
+        check_ctrl(2'b00, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, test_id);
+        test_id = test_id + 1;
         //       NOTE on Branch: the manual's 'Branch' column maps to beq=1
         //       for BEQ and bne=1 for BNE. Both beq and bne are 0 for JMP.
         // ------------------------------------------------------------------

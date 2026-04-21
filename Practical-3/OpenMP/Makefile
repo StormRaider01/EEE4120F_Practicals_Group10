@@ -59,15 +59,24 @@ run_debug: $(DEBUG_TARGET)
 # Execution Rules (Automated Benchmarking)
 # ==========================================
 
+# ==========================================
+# Execution Rules (Automated 5x Benchmarking)
+# ==========================================
 benchmark: $(TARGET)
+	@echo "Cleaning old outputs to ensure fresh averages..."
+	@rm -rf $(OUTPUT_DIR)/*.txt
 	@mkdir -p $(OUTPUT_DIR)
-	@echo "Starting OpenMP benchmark for Speedup Calculation..."
+	@echo "Starting 5x Averaged OpenMP Benchmark..."
 	@for p in $(PROCS); do \
 		echo "====================================="; \
 		echo "Testing with $$p threads:"; \
 		for f in $(FILES); do \
-			echo "  -> energy$$f.txt"; \
-			./$(TARGET) -p $$p -i $(INPUT_DIR)/energy$$f -o $(OUTPUT_DIR)/energy$$f.txt; \
+			echo "  -> energy$$f (Running 5 iterations...)"; \
+			for run in 1 2 3 4 5; do \
+				./$(TARGET) -p $$p -i $(INPUT_DIR)/energy$$f -o $(OUTPUT_DIR)/energy$$f.txt; \
+			done; \
 		done; \
 	done
-	@echo "Benchmarking complete. Check the $(OUTPUT_DIR) folder."
+	@echo "Merging all results into one file..."
+	@cat $(OUTPUT_DIR)/energy*.txt > $(OUTPUT_DIR)/all_combined_omp.txt
+	@echo "Benchmarking complete! Raw data in $(OUTPUT_DIR)/all_combined_omp.txt"

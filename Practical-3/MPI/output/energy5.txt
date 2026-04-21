@@ -1,35 +1,175 @@
 --- Run with 1 Processes ---
 Minimum cost: 115
 Path: 1 4 5 2 3 
-T_init: 0.22741795 sec | T_comp: 0.00002813 sec
+T_init: 0.22306514 sec | T_comp: 0.00002003 sec
+
+--- Run with 1 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.22110915 sec | T_comp: 0.00001383 sec
+
+--- Run with 1 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.22155285 sec | T_comp: 0.00001597 sec
+
+--- Run with 1 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.22105002 sec | T_comp: 0.00001597 sec
+
+--- Run with 1 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.22041893 sec | T_comp: 0.00001478 sec
 
 --- Run with 2 Processes ---
 Minimum cost: 115
 Path: 1 4 5 2 3 
-T_init: 0.22981596 sec | T_comp: 0.00001502 sec
+T_init: 0.22475791 sec | T_comp: 0.00001502 sec
+
+--- Run with 2 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.22462606 sec | T_comp: 0.00001407 sec
+
+--- Run with 2 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.22620797 sec | T_comp: 0.00001788 sec
+
+--- Run with 2 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.22909808 sec | T_comp: 0.00001383 sec
+
+--- Run with 2 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.22775412 sec | T_comp: 0.00001597 sec
 
 --- Run with 4 Processes ---
 Minimum cost: 115
 Path: 1 4 5 2 3 
-T_init: 0.24578595 sec | T_comp: 0.00002408 sec
+T_init: 0.24185514 sec | T_comp: 0.00002694 sec
+
+--- Run with 4 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.24002290 sec | T_comp: 0.00002909 sec
+
+--- Run with 4 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.25122309 sec | T_comp: 0.00003719 sec
+
+--- Run with 4 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.25309491 sec | T_comp: 0.00002599 sec
+
+--- Run with 4 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.24651504 sec | T_comp: 0.00002193 sec
 
 --- Run with 6 Processes ---
 Minimum cost: 115
 Path: 1 4 5 2 3 
-T_init: 0.25613093 sec | T_comp: 0.00004196 sec
+T_init: 0.25679493 sec | T_comp: 0.00003791 sec
+
+--- Run with 6 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.25916100 sec | T_comp: 0.00004292 sec
+
+--- Run with 6 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: -0.46333003 sec | T_comp: 0.00041389 sec
+
+--- Run with 6 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.25576496 sec | T_comp: 0.00015092 sec
+
+--- Run with 6 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.26349688 sec | T_comp: 0.00004292 sec
 
 --- Run with 8 Processes ---
 Minimum cost: 115
 Path: 1 4 5 2 3 
-T_init: 0.27558208 sec | T_comp: 0.00003314 sec
+T_init: 0.28860283 sec | T_comp: 0.00004601 sec
+
+--- Run with 8 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.27473497 sec | T_comp: 0.00004888 sec
+
+--- Run with 8 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.27179289 sec | T_comp: 0.00043201 sec
+
+--- Run with 8 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.27005482 sec | T_comp: 0.00003886 sec
+
+--- Run with 8 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.26234508 sec | T_comp: 0.00011516 sec
 
 --- Run with 10 Processes ---
 Minimum cost: 115
 Path: 1 4 5 2 3 
-T_init: 0.27110291 sec | T_comp: 0.00008297 sec
+T_init: 0.28104806 sec | T_comp: 0.00006819 sec
+
+--- Run with 10 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.28268504 sec | T_comp: 0.00021386 sec
+
+--- Run with 10 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.27630305 sec | T_comp: 0.00018191 sec
+
+--- Run with 10 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.27520514 sec | T_comp: 0.00024891 sec
+
+--- Run with 10 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.26943302 sec | T_comp: 0.00011015 sec
 
 --- Run with 12 Processes ---
 Minimum cost: 115
 Path: 1 4 5 2 3 
-T_init: 0.28444099 sec | T_comp: 0.00006509 sec
+T_init: 0.28205895 sec | T_comp: 0.00003004 sec
+
+--- Run with 12 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.27906919 sec | T_comp: 0.00036788 sec
+
+--- Run with 12 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.29977608 sec | T_comp: 0.00007200 sec
+
+--- Run with 12 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.28162217 sec | T_comp: 0.00004005 sec
+
+--- Run with 12 Processes ---
+Minimum cost: 115
+Path: 1 4 5 2 3 
+T_init: 0.28012991 sec | T_comp: 0.00006390 sec
 

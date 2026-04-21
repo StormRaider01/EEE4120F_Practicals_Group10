@@ -104,6 +104,10 @@ module ALU_tb;
         //               check_result(result, X+Y, test_id); test_id = test_id + 1;
         //
         //       Suggested pairs: (10,5), (0xFFFF, 1) [overflow], (0, 0)
+        a = 10; b = 5; alu_control = 3'b000; #10;
+        check_result(result, 15, test_id); test_id = test_id + 1;
+        a = 16'hFFFF; b = 1; alu_control = 3'b000; #10;
+        check_result(result, 16'h0000, test_id); test_id = test_id + 1; // Overflow case
 
 
         $display("--- SUB (alu_control = 3'b001) ---");
@@ -111,44 +115,67 @@ module ALU_tb;
         // TODO: Test SUB with at least three pairs.
         //       Include a case where result = 0 to test the zero flag.
         //       Suggested pairs: (10, 5), (7, 7) [result=0], (5, 10) [underflow wrap]
+        a = 10; b = 5; alu_control = 3'b001; #10;
+        check_result(result, 5, test_id); test_id = test_id + 1;
+        check_zero(zero, 0, test_id); test_id = test_id + 1;
+        a = 7; b = 7; alu_control = 3'b001; #10;
+        check_result(result, 0, test_id); test_id = test_id + 1;
+        check_zero(zero, 1, test_id); test_id = test_id + 1; // Testing zero flag
 
 
         $display("--- INV / NOT (alu_control = 3'b010) ---");
 
         // TODO: Test INV (bitwise NOT, b is ignored) with at least two values.
         //       Suggested values for a: 16'h0000, 16'hFFFF, 16'hA5A5
+        a = 16'hAAAA; alu_control = 3'b010; #10;
+        check_result(result, 16'h5555, test_id); test_id = test_id + 1;
+        
+        a = 16'hFFFF; alu_control = 3'b010; #10;
+        check_result(result, 16'h0000, test_id); test_id = test_id + 1;
+        check_zero(zero, 1, test_id); test_id = test_id + 1; // Zero check for INV
 
 
         $display("--- SHL (alu_control = 3'b011) ---");
 
         // TODO: Test left shift. Remember only b[3:0] is used as the shift amount.
         //       Suggested pairs (a, b): (16'h0001, 4), (16'h0003, 2), (16'hFFFF, 8)
+        a = 16'h0001; b = 4; alu_control = 3'b011; #10;
+        check_result(result, 16'h0010, test_id); test_id = test_id + 1;
 
 
         $display("--- SHR (alu_control = 3'b100) ---");
 
         // TODO: Test right shift (logical — MSB fills with 0).
         //       Suggested pairs: (16'h0080, 4), (16'hFFFF, 8), (16'h0001, 1)
+        a = 16'h0010; b = 4; alu_control = 3'b100; #10;
+        check_result(result, 16'h0001, test_id); test_id = test_id + 1;
 
 
         $display("--- AND (alu_control = 3'b101) ---");
 
         // TODO: Test bitwise AND.
         //       Suggested pairs: (16'hFFFF, 16'h0F0F), (16'hAAAA, 16'h5555), (0, anything)
+        a = 16'hA5A5; b = 16'h0F0F; alu_control = 3'b101; #10;
+        check_result(result, 16'h0505, test_id); test_id = test_id + 1;
 
 
         $display("--- OR (alu_control = 3'b110) ---");
 
         // TODO: Test bitwise OR.
         //       Suggested pairs: (16'h0F0F, 16'hF0F0), (16'hAAAA, 16'h5555), (0, 16'hBEEF)
-
+        a = 16'hA5A5; b = 16'h0F0F; alu_control = 3'b110; #10;
+        check_result(result, 16'hAFAF, test_id); test_id = test_id + 1;
 
         $display("--- SLT (alu_control = 3'b111) ---");
 
         // TODO: Test set-less-than. Result must be 1 when a < b (unsigned), 0 otherwise.
         //       Test cases must include: a < b, a == b, a > b.
         //       Suggested pairs: (5, 10) -> 1,  (10, 10) -> 0,  (15, 3) -> 0
+        a = 5; b = 10; alu_control = 3'b111; #10;
+        check_result(result, 16'h0001, test_id); test_id = test_id + 1; // a < b is true
 
+        a = 10; b = 5; alu_control = 3'b111; #10;
+        check_result(result, 16'h0000, test_id); test_id = test_id + 1; // a < b is false
 
         $display("--- Zero flag edge cases ---");
 
