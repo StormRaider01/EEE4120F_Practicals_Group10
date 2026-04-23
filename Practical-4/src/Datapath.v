@@ -268,7 +268,7 @@ module Datapath (
     //
     DataMemory dm (
         .clk             (clk),
-        .mem_access_addr (alu_result),
+        .mem_access_addr (alu_result[2:0]), //CHECK THIS
         .mem_write_data  (reg_read_data_2),
         .mem_write_en    (mem_write),
         .mem_read        (mem_read),

@@ -86,7 +86,12 @@ module DataMemory (
 
     integer log_fd;
     initial begin
-        $readmemb("./test/test.data", memory);
+        //$readmemb("./test/test.data", memory);
+        $readmemb("test.data", memory);
+        $display("DEBUG DataMem[0]=%b", memory[0]);  // should print 0000000000000001
+        $display("DEBUG DataMem[1]=%b", memory[1]);  // should print 0000000000000010
+
+        //these are not the problem
     end
 
     // -------------------------------------------------------------------------
